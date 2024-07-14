@@ -1,0 +1,10 @@
+/* App.css */
+.app-container {
+  margin-top: 10px;
+  background-color: #f0f8ff; /* Light blue background color */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* Ensure column layout */
+  justify-content: flex-start; /* Align items to the start */
+  padding-bottom: 300px; /* Adjust to ensure no overlap with fixed bottom content */
+}
