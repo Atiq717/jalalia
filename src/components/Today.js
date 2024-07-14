@@ -63,11 +63,28 @@ export default function Today() {
         name: "Isha",
         time: moment(`${date} ${timetableData.isha}`, "YYYY-MM-DD HH:mm:ss"),
       },
-      {
+    ];
+
+    if (timetableData.jummah) {
+      prayers.push({
         name: "Jummah",
         time: moment(`${date} ${timetableData.jummah}`, "YYYY-MM-DD HH:mm:ss"),
-      },
-    ];
+      });
+    }
+
+    if (timetableData.eid1) {
+      prayers.push({
+        name: "Eid 1",
+        time: moment(`${date} ${timetableData.eid1}`, "YYYY-MM-DD HH:mm:ss"),
+      });
+    }
+
+    if (timetableData.eid2) {
+      prayers.push({
+        name: "Eid 2",
+        time: moment(`${date} ${timetableData.eid2}`, "YYYY-MM-DD HH:mm:ss"),
+      });
+    }
 
     for (let i = 0; i < prayers.length; i++) {
       if (now.isBefore(prayers[i].time)) {
@@ -88,7 +105,7 @@ export default function Today() {
   return (
     <Container fluid className="app-container d-flex flex-column">
       <h1 className="text-center mb-4 heading">
-        Jalaia Sunni Masjid and Madrasha
+        Jalaia Sunni Masjid and Madrasha - Today
       </h1>
       <Row className="justify-content-center flex-grow-1 w-100 mb-4 scroll-container">
         <Col xs={12}>
@@ -149,17 +166,45 @@ export default function Today() {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <Card className="mb-3 prayer-card">
-                <Card.Body className="d-flex justify-content-between align-items-center">
-                  <Card.Title>Jummah</Card.Title>
-                  <Card.Text>
-                    {moment(
-                      `${timetable.date} ${timetable.jummah}`,
-                      "YYYY-MM-DD HH:mm:ss"
-                    ).format("hh:mm A")}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              {timetable.jummah && (
+                <Card className="mb-3 prayer-card">
+                  <Card.Body className="d-flex justify-content-between align-items-center">
+                    <Card.Title>Jummah</Card.Title>
+                    <Card.Text>
+                      {moment(
+                        `${timetable.date} ${timetable.jummah}`,
+                        "YYYY-MM-DD HH:mm:ss"
+                      ).format("hh:mm A")}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              )}
+              {timetable.eid1 && (
+                <Card className="mb-3 prayer-card">
+                  <Card.Body className="d-flex justify-content-between align-items-center">
+                    <Card.Title>Eid 1</Card.Title>
+                    <Card.Text>
+                      {moment(
+                        `${timetable.date} ${timetable.eid1}`,
+                        "YYYY-MM-DD HH:mm:ss"
+                      ).format("hh:mm A")}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              )}
+              {timetable.eid2 && (
+                <Card className="mb-3 prayer-card">
+                  <Card.Body className="d-flex justify-content-between align-items-center">
+                    <Card.Title>Eid 2</Card.Title>
+                    <Card.Text>
+                      {moment(
+                        `${timetable.date} ${timetable.eid2}`,
+                        "YYYY-MM-DD HH:mm:ss"
+                      ).format("hh:mm A")}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              )}
             </>
           ) : (
             <Card>
