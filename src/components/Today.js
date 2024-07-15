@@ -56,8 +56,8 @@ export default function Today() {
         time: moment(`${date} ${timetableData.asr}`, "YYYY-MM-DD HH:mm:ss"),
       },
       {
-        name: "Maghrib",
-        time: moment(`${date} ${timetableData.maghrib}`, "YYYY-MM-DD HH:mm:ss"),
+        name: "Sunset",
+        time: moment(`${date} ${timetableData.sunset}`, "YYYY-MM-DD HH:mm:ss"),
       },
       {
         name: "Isha",
@@ -126,6 +126,12 @@ export default function Today() {
                       `${timetable.date} ${timetable.fajr_jamah}`,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
+                    <br />
+                    Sunrise:{" "}
+                    {moment(
+                      `${timetable.date} ${timetable.sunrise}`,
+                      "YYYY-MM-DD-HH:mm:ss"
+                    ).format("hh:mm A")}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -169,9 +175,9 @@ export default function Today() {
                 <Card.Body className="d-flex justify-content-between align-items-center">
                   <Card.Title>Maghrib</Card.Title>
                   <Card.Text>
-                    Beginning:{" "}
+                    Sunset:{" "}
                     {moment(
-                      `${timetable.date} ${timetable.maghrib}`,
+                      `${timetable.date} ${timetable.sunset}`,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
                     <br />

@@ -13,7 +13,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT date, fajr, dhuhr, asr, maghrib, isha, jummah, eid1, eid2, fajr_jamah, dhuhr_jamah, asr_jamah, maghrib_jamah, isha_jamah FROM calendar WHERE date = CURDATE()";
+$sql = "SELECT date, fajr, dhuhr, asr, sunset, isha, jummah, eid1, eid2, fajr_jamah, dhuhr_jamah, asr_jamah, maghrib_jamah, isha_jamah, sunrise FROM calendar WHERE date = CURDATE()";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
