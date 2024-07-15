@@ -1,6 +1,7 @@
 /* Today.css */
 .app-container {
   background-color: #f0f8ff; /* Light blue background color */
+  color: #006b52;
   min-height: 100vh;
   display: flex;
   flex-direction: column; /* Ensure column layout */
@@ -15,7 +16,8 @@
 }
 
 .prayer-card {
-  background-color: #ffffff; /* White background for cards */
+  background-color: #ffbc00; /* White background for cards */
+  color: #e6f7ff;
   border: none; /* Remove border */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
@@ -26,11 +28,12 @@
 .next-prayer-card,
 .countdown-card {
   background-color: #e6f7ff; /* Light blue background for emphasis */
+  color: #006b52;
   border: none; /* Remove border */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  margin: 1px;
-  padding: 1px;
+  margin: 3px;
+  padding: 3px;
   font-size: 0.9rem; /* Smaller font size */
 }
 

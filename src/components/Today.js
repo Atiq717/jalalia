@@ -105,7 +105,7 @@ export default function Today() {
   return (
     <Container fluid className="app-container d-flex flex-column">
       <h1 className="text-center mb-4 heading">
-        Jalaia Sunni Masjid and Madrasha - Today
+        Jalaia Sunni Masjid and Madrasha
       </h1>
       <Row className="justify-content-center flex-grow-1 w-100 mb-4 scroll-container">
         <Col xs={12}>
@@ -115,8 +115,15 @@ export default function Today() {
                 <Card.Body className="d-flex justify-content-between align-items-center">
                   <Card.Title>Fajr</Card.Title>
                   <Card.Text>
+                    Beginning:{" "}
                     {moment(
                       `${timetable.date} ${timetable.fajr}`,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm A")}
+                    <br />
+                    Jammah:{" "}
+                    {moment(
+                      `${timetable.date} ${timetable.fajr_jamah}`,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
                   </Card.Text>
@@ -126,8 +133,15 @@ export default function Today() {
                 <Card.Body className="d-flex justify-content-between align-items-center">
                   <Card.Title>Dhuhr</Card.Title>
                   <Card.Text>
+                    Beginning:{" "}
                     {moment(
                       `${timetable.date} ${timetable.dhuhr}`,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm A")}
+                    <br />
+                    Jammah:{" "}
+                    {moment(
+                      `${timetable.date} ${timetable.dhuhr_jamah}`,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
                   </Card.Text>
@@ -137,8 +151,15 @@ export default function Today() {
                 <Card.Body className="d-flex justify-content-between align-items-center">
                   <Card.Title>Asr</Card.Title>
                   <Card.Text>
+                    Beginning:{" "}
                     {moment(
                       `${timetable.date} ${timetable.asr}`,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm A")}
+                    <br />
+                    Jammah:{" "}
+                    {moment(
+                      `${timetable.date} ${timetable.asr_jamah}`,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
                   </Card.Text>
@@ -148,8 +169,15 @@ export default function Today() {
                 <Card.Body className="d-flex justify-content-between align-items-center">
                   <Card.Title>Maghrib</Card.Title>
                   <Card.Text>
+                    Beginning:{" "}
                     {moment(
                       `${timetable.date} ${timetable.maghrib}`,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm A")}
+                    <br />
+                    Jammah:{" "}
+                    {moment(
+                      `${timetable.date} ${timetable.maghrib_jamah}`,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
                   </Card.Text>
@@ -159,8 +187,15 @@ export default function Today() {
                 <Card.Body className="d-flex justify-content-between align-items-center">
                   <Card.Title>Isha</Card.Title>
                   <Card.Text>
+                    Beginning:{" "}
                     {moment(
                       `${timetable.date} ${timetable.isha}`,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm A")}
+                    <br />
+                    Jammah:{" "}
+                    {moment(
+                      `${timetable.date} ${timetable.isha_jamah}`,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
                   </Card.Text>
@@ -169,7 +204,7 @@ export default function Today() {
               {timetable.jummah && (
                 <Card className="mb-3 prayer-card">
                   <Card.Body className="d-flex justify-content-between align-items-center">
-                    <Card.Title>Jummah</Card.Title>
+                    <Card.Title>Friday - Jummah</Card.Title>
                     <Card.Text>
                       {moment(
                         `${timetable.date} ${timetable.jummah}`,
@@ -182,7 +217,7 @@ export default function Today() {
               {timetable.eid1 && (
                 <Card className="mb-3 prayer-card">
                   <Card.Body className="d-flex justify-content-between align-items-center">
-                    <Card.Title>Eid 1</Card.Title>
+                    <Card.Title>Early Eid Jammah</Card.Title>
                     <Card.Text>
                       {moment(
                         `${timetable.date} ${timetable.eid1}`,
@@ -195,7 +230,7 @@ export default function Today() {
               {timetable.eid2 && (
                 <Card className="mb-3 prayer-card">
                   <Card.Body className="d-flex justify-content-between align-items-center">
-                    <Card.Title>Eid 2</Card.Title>
+                    <Card.Title>Late Eid Jammah</Card.Title>
                     <Card.Text>
                       {moment(
                         `${timetable.date} ${timetable.eid2}`,
@@ -215,7 +250,7 @@ export default function Today() {
           )}
         </Col>
       </Row>
-      <div className="fixed-bottom w-100 p-3 bg-light">
+      <div className="fixed-bottom w-100 p-3 m-0 bg-light">
         <Card className="next-prayer-card mb-3">
           <Card.Body className="text-center">
             <Card.Title>Next Salah</Card.Title>
@@ -224,7 +259,7 @@ export default function Today() {
         </Card>
         <Card className="countdown-card">
           <Card.Body className="text-center">
-            <Card.Title>Time to Salah</Card.Title>
+            <Card.Title>Time to {nextPrayer}</Card.Title>
             <Card.Text className="display-4">
               {formatCountdown(countdown)}
             </Card.Text>

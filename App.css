@@ -1,10 +1,59 @@
 /* App.css */
 .app-container {
-  margin-top: 10px;
   background-color: #f0f8ff; /* Light blue background color */
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* Ensure column layout */
-  justify-content: flex-start; /* Align items to the start */
-  padding-bottom: 325px; /* Adjust to ensure no overlap with fixed bottom content */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 200px; /* Ensure no overlap with fixed bottom content */
+}
+
+.scroll-container {
+  flex: 1;
+  width: 100%;
+  max-height: calc(100vh - 220px); /* Ensure space for fixed bottom content */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px;
+  margin-bottom: 150px; /* Ensure there is enough space for scrolling */
+}
+
+.prayer-card {
+  background-color: #ffffff; /* White background for cards */
+  border: none; /* Remove border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-bottom: 10px; /* Add margin between cards */
+}
+
+.next-prayer-card,
+.countdown-card {
+  background-color: #e6f7ff; /* Light blue background for emphasis */
+  border: none; /* Remove border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+h1 {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+.display-4 {
+  font-size: 28px;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
