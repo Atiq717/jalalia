@@ -1,27 +1,30 @@
 <?php
-header('Content-Type: application/json');
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jalalia";
+require '../vendor/autoload.php';
 
-// Create connection
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$servername = $_ENV['DB_HOST'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$dbname = $_ENV['DB_NAME'];
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT date, fajr, dhuhr, asr, sunset, isha, jummah, eid1, eid2, fajr_jamah, dhuhr_jamah, asr_jamah, maghrib_jamah, isha_jamah, sunrise FROM calendar WHERE date = CURDATE()";
+$sql = "SELECT date, fajr, fajr_jamah, sunrise, dhuhr, dhuhr_jamah, asr, asr_jamah, sunset, maghrib_jamah, isha, isha_jamah, jummah, eid1, eid2 FROM calendar WHERE date = CURDATE()";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-  // output data of each row
-  $data = $result->fetch_assoc();
-  echo json_encode($data);
+    $row = $result->fetch_assoc();
+    echo json_encode($row);
 } else {
-  echo json_encode(array("error" => "No records found for date: " . date("Y-m-d")));
+    echo json_encode(["error" => "No records found for date: " . date("Y-m-d")]);
 }
+
 $conn->close();
 ?>
