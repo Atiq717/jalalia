@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 200px; /* Ensure no overlap with fixed bottom content */
+  font-weight: 777;
 }
 
 .scroll-container {

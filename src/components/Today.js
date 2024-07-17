@@ -108,9 +108,11 @@ export default function Today() {
   return (
     <Container fluid className="app-container d-flex flex-column">
       <Row className="justify-content-center flex-grow-1 w-100 mb-4 scroll-container">
-        <h1 className="text-center mb-4 heading">
-          Jalalia Sunni Masjid and Madrasha
-        </h1>
+        <h2>
+          {" "}
+          {timetable.date &&
+            moment(timetable.date, "YYYY-MM-DD").format("dddd Do MMMM YYYY")}
+        </h2>
         <Col xs={12}>
           {Object.keys(timetable).length > 0 ? (
             <>
