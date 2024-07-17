@@ -5,6 +5,9 @@ import moment from "moment";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/Today.css";
 
+// Ensure you import the environment variable correctly
+const API_URL = process.env.REACT_APP_API_URL;
+
 export default function Today() {
   const [timetable, setTimetable] = useState({});
   const [nextPrayer, setNextPrayer] = useState("");
@@ -22,11 +25,11 @@ export default function Today() {
   }, [timetable]);
 
   const fetchTimetable = async () => {
+    console.log("API URL:", API_URL); // Debug: log the API URL to ensure it's being read correctly
+
     try {
-      const response = await axios.get(
-        "http://localhost/jalalia/php/get_timetable.php"
-      );
-      console.log("Fetched data:", response.data);
+      const response = await axios.get(API_URL);
+      console.log("Fetched data:", response.data); // Debug: log the fetched data
       setTimetable(response.data);
       updateCountdown(response.data);
     } catch (error) {
@@ -104,10 +107,10 @@ export default function Today() {
 
   return (
     <Container fluid className="app-container d-flex flex-column">
-      <h1 className="text-center mb-4 heading">
-        Jalaia Sunni Masjid and Madrasha
-      </h1>
       <Row className="justify-content-center flex-grow-1 w-100 mb-4 scroll-container">
+        <h1 className="text-center mb-4 heading">
+          Jalalia Sunni Masjid and Madrasha
+        </h1>
         <Col xs={12}>
           {Object.keys(timetable).length > 0 ? (
             <>
@@ -130,7 +133,7 @@ export default function Today() {
                     Sunrise:{" "}
                     {moment(
                       `${timetable.date} ${timetable.sunrise}`,
-                      "YYYY-MM-DD-HH:mm:ss"
+                      "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm A")}
                   </Card.Text>
                 </Card.Body>
@@ -207,19 +210,17 @@ export default function Today() {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              {timetable.jummah && (
-                <Card className="mb-3 prayer-card">
-                  <Card.Body className="d-flex justify-content-between align-items-center">
-                    <Card.Title>Friday - Jummah</Card.Title>
-                    <Card.Text>
-                      {moment(
-                        `${timetable.date} ${timetable.jummah}`,
-                        "YYYY-MM-DD HH:mm:ss"
-                      ).format("hh:mm A")}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              )}
+              <Card className="mb-3 prayer-card">
+                <Card.Body className="d-flex justify-content-between align-items-center">
+                  <Card.Title>Friday - Jummah</Card.Title>
+                  <Card.Text>
+                    {moment(
+                      `${timetable.date} ${timetable.jummah}`,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm A")}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
               {timetable.eid1 && (
                 <Card className="mb-3 prayer-card">
                   <Card.Body className="d-flex justify-content-between align-items-center">

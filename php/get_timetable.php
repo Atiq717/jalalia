@@ -1,30 +1,29 @@
 <?php
-require '../vendor/autoload.php';
+// Enable error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// Include database configuration
+require '../config.php'; // Adjust the path if necessary
 
-$servername = $_ENV['DB_HOST'];
-$username = $_ENV['DB_USER'];
-$password = $_ENV['DB_PASS'];
-$dbname = $_ENV['DB_NAME'];
+header('Content-Type: application/json');
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $date = date('Y-m-d'); // Current date
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    $sql = "SELECT date, fajr, fajr_jamah, sunrise, dhuhr, dhuhr_jamah, asr, asr_jamah, sunset, maghrib_jamah, isha, isha_jamah, jummah, eid1, eid2 FROM calendar WHERE date = '$date'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+        echo json_encode($data);
+    } else {
+        echo json_encode(['error' => "No records found for date: $date"]);
+    }
+
+    $conn->close();
+} catch (Exception $e) {
+    echo json_encode(['error' => $e->getMessage()]);
 }
-
-$sql = "SELECT date, fajr, fajr_jamah, sunrise, dhuhr, dhuhr_jamah, asr, asr_jamah, sunset, maghrib_jamah, isha, isha_jamah, jummah, eid1, eid2 FROM calendar WHERE date = CURDATE()";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    echo json_encode($row);
-} else {
-    echo json_encode(["error" => "No records found for date: " . date("Y-m-d")]);
-}
-
-$conn->close();
 ?>
