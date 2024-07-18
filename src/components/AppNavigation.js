@@ -6,7 +6,8 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Animated from "react-native-reanimated";
 
-import Today from "./Today"; // Ensure the path is correct
+import Today from "./Today";
+import August from "./August";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,7 @@ function CustomHeader({ navigation }) {
         onPress={() => navigation.toggleDrawer()}
         style={styles.menuButton}
       >
-        <Ionicons name="menu" size={24} color="black" />
+        <Ionicons name="menu" size={24} color="#006b52" />
       </TouchableOpacity>
       <Text style={styles.headerTitle}>Jalalia Sunni Masjid and Madrasha</Text>
     </Animated.View>
@@ -30,6 +31,8 @@ function HomeStack() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        gestureEnabled: true, // Enable gestures
+        gestureDirection: "horizontal", // Optional: set gesture direction
       }}
     >
       <Stack.Screen name="Jalalia" component={Today} />
@@ -45,7 +48,7 @@ export default function AppNavigation() {
         screenOptions={{
           header: ({ navigation }) => <CustomHeader navigation={navigation} />,
           drawerActiveTintColor: "#006b52", // Active link color
-          drawerInactiveTintColor: "#000", // Inactive link color
+          drawerInactiveTintColor: "#f0f8ff", // Inactive link color
           drawerLabelStyle: {
             fontSize: 16, // Adjust the font size if needed
             fontWeight: "bold",
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
-    backgroundColor: "transparent",
+    backgroundColor: "#f0f8ff",
   },
   menuButton: {
     marginRight: 10,
@@ -74,5 +77,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     flex: 1,
     color: "#006b52", // Added color property
+    backgroundColor: "#f0f8ff",
   },
 });
