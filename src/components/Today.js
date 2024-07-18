@@ -89,6 +89,19 @@ export default function Today() {
       });
     }
 
+    // Add next day's Fajr if current time is after Isha
+    const ishaTime = moment(
+      `${date} ${timetableData.isha}`,
+      "YYYY-MM-DD HH:mm:ss"
+    );
+    if (now.isAfter(ishaTime)) {
+      const nextDay = moment(date).add(1, "day").format("YYYY-MM-DD");
+      prayers.push({
+        name: "Fajr",
+        time: moment(`${nextDay} ${timetableData.fajr}`, "YYYY-MM-DD HH:mm:ss"),
+      });
+    }
+
     for (let i = 0; i < prayers.length; i++) {
       if (now.isBefore(prayers[i].time)) {
         setNextPrayer(prayers[i].name);
@@ -260,15 +273,19 @@ export default function Today() {
         </Col>
       </Row>
       <div className="fixed-bottom w-100 p-3 m-0 bg-light">
-        <Card className="next-prayer-card mb-3">
+        {/* <Card className="next-prayer-card mb-3">
           <Card.Body className="text-center">
             <Card.Title>Next Salah</Card.Title>
-            <Card.Text className="display-4">{nextPrayer}</Card.Text>
+            <Card.Text className="display-4">
+              {nextPrayer === "Sunset" ? "Maghrib" : nextPrayer}
+            </Card.Text>
           </Card.Body>
-        </Card>
+        </Card> */}
         <Card className="countdown-card">
           <Card.Body className="text-center">
-            <Card.Title>Time to {nextPrayer}</Card.Title>
+            <Card.Title>
+              {nextPrayer === "Sunset" ? "Maghrib" : nextPrayer} Time Starts in
+            </Card.Title>
             <Card.Text className="display-4">
               {formatCountdown(countdown)}
             </Card.Text>

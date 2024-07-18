@@ -12,7 +12,7 @@
 .scroll-container {
   flex: 3; /* Allow the scroll container to grow and take available space */
   overflow-y: auto; /* Enable vertical scrolling */
-  padding: 1px;
+  padding-bottom: 155px;
 }
 
 .prayer-card {
@@ -45,6 +45,7 @@ h1 {
 }
 h2 {
   font-size: 18px;
+  padding-top: 15px;
 }
 
 .card-title {
